@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            {{ user.email }}
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" style="padding: 0;">
+            <form action="/oidc/logout/" method="post">
+              {% csrf_token %}
+              <button name="logout" value="logout"
+                  class="btn btn-default btn-block">
+                Log out
+              </button>
+            </form>
+        </ul>
+    </li>
+  {% else %}
+    <li>
+      <a href="/oidc/authenticate/">Log in</a>
+    </li>
+  {% endif %}
+
+
+  </body>
+</html>
