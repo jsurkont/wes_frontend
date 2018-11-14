@@ -69,25 +69,25 @@
 
       <div class="jumbotron">
         <h1 class="display-3">Welcome to the basic front-end</h1>
-        <p class="lead">To log-in, please click the button below:</p>
 
         {% if user.is_authenticated %}
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{ user.email }}
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" style="padding: 0;">
-                <form action="/oidc/logout/" method="post">
-                  {% csrf_token %}
-                  <button name="logout" value="logout"
-                      class="btn btn-default btn-block">
-                    Log out
-                  </button>
-                </form>
-            </ul>
-        </li>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ user.email }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">You have been logged-in successfully</h6>
+              <p class="card-text"></p>
+
+              <form action="/oidc/logout/" method="post">
+                {% csrf_token %}
+                <button name="logout" value="logout"
+                    class="btn btn-default btn-block" type="submit">
+                  <a href="#" class="card-link">Click here to logout</a>
+                </button>
+              </form>
+            </div>
+          </div>
         {% else %}
+          <p class="lead">To log-in, please click the button below:</p>
           <p><a class="btn btn-lg btn-success" href="/oidc/authenticate/" role="button">Log-in</a></p>
         {% endif %}
       </div>
