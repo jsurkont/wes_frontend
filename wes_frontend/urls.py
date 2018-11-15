@@ -21,6 +21,7 @@ from . import views
 
 urlpatterns = [
     url('^$', views.home),
+    url('^token$', views.token),
     path('admin/', admin.site.urls),
     url('^oidc/', include('mozilla_django_oidc.urls')),
 ]
